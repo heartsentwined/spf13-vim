@@ -39,7 +39,6 @@ mv $endpath/.vimrc $HOME/.vimrc
 mv $endpath/.vimrc.fork $HOME/.vimrc.fork
 mv $endpath/.vimrc.bundles $HOME/.vimrc.bundles
 mv $endpath/.vimrc.bundles.fork $HOME/.vimrc
-mv $endpath/.vim $HOME/.vim
 if [ ! -d $endpath/.vim/bundle ]; then
     mkdir -p $endpath/.vim/bundle
 fi
