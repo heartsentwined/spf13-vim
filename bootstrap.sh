@@ -39,8 +39,8 @@ mv $endpath/.vimrc $HOME/.vimrc
 mv $endpath/.vimrc.fork $HOME/.vimrc.fork
 mv $endpath/.vimrc.bundles $HOME/.vimrc.bundles
 mv $endpath/.vimrc.bundles.fork $HOME/.vimrc
-if [ ! -d $endpath/.vim/bundle ]; then
-    mkdir -p $endpath/.vim/bundle
+if [ ! -d $HOME/.vim/bundle ]; then
+    mkdir -p $HOME/.vim/bundle
 fi
 
 echo "removing tmp folder"
@@ -52,4 +52,4 @@ if [ ! -e $HOME/.vim/bundle/vundle ]; then
 fi
 
 echo "update/install plugins using Vundle"
-vim -u $endpath/.vimrc.bundles - +BundleInstall! +BundleClean +qall
+vim -u $HOME/.vimrc.bundles - +BundleInstall! +BundleClean +qall
