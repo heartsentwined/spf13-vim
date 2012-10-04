@@ -1,0 +1,185 @@
+" Modeline and Notes {
+" vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
+"
+"   Custom settings and mappings by heartsentwined
+"
+" }
+
+" General {
+    " map 'jk' to Esc
+    inoremap jk <Esc>
+    inoremap Jk <Esc>
+    inoremap jK <Esc>
+    inoremap JK <Esc>
+
+    set autoread                " auto read a file if changed externally
+    set autochdir               " auto chdir to match current buffer
+    set colorcolumn=80          " show 80-char indicator
+    "colorscheme slate           " pick your favourite :-)
+    noremap <leader>w :wa!<cr>  " fast saving all buffers
+
+    " quick editing of local vimrc config
+    noremap <leader>e :e! ~/.vimrc.local<cr>
+" }
+
+" Backups {
+    " turn off backups, expect to rely on source controls
+    set nobackup
+    set nowb
+    set noswapfile
+" }
+
+" Editing {
+    set smarttab            "  smart tabs
+    set smartindent         " smart indent
+    set ffs=unix,dos,mac    " set unix as standard file type
+
+    " <leader>u to turn current word to uppercase. useful for constants
+    inoremap <leader>u <esc>viwUea
+    nnoremap <leader>u viwU
+    vnoremap <leader>u iwU
+
+    " Return to last edit position when opening files (You want this!)
+    autocmd BufReadPost *
+         \ if line("'\"") > 0 && line("'\"") <= line("$") |
+         \   exe "normal! g`\"" |
+         \ endif
+    " Remember info about open buffers on close
+    set viminfo^=%
+
+    " Remove trailing whitespaces and ^M chars for all files
+    autocmd FileType * autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+" }
+
+" Visual mode {
+    " Visual mode pressing * or # searches for the current selection
+    vnoremap <silent> * :call VisualSelection('f', '')<CR>
+    vnoremap <silent> # :call VisualSelection('b', '')<CR>
+    " When you press <leader>r you can search and replace the selected text
+    vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+" }
+
+" Movements, windows, buffers {
+    " Smart way to move between windows
+    noremap <C-j> <C-W>j
+    noremap <C-k> <C-W>k
+    noremap <C-h> <C-W>h
+    noremap <C-l> <C-W>l
+
+    noremap <leader>tn :tabnew<cr>      " new tab
+    noremap <leader>tc :tabclose<cr>    " close tab
+    noremap <leader>to :tabonly<cr>     " close other tabs
+    noremap <leader>tm :tabmove         " move tab
+    noremap <leader>t<leader> :tabnext  " next tab
+
+    noremap <leader>bd :Bclose<cr>      " close current buffer
+    noremap <leader>ba :1,1000 bd!<cr>  " close all buffers
+    " switch buffer behavior
+    try
+        set switchbuf=useopen,usetab,newtab
+    catch
+    endtry
+" }
+
+" Folds {
+    nnoremap <leader>ff :set foldlevel=1<cr>    " most often used fold level
+    nnoremap <leader>fo :set foldlevel=99<cr>   " open all folds
+" }
+
+" Grep and cope {
+    " turn magic on for regex
+    set magic
+    "smart grep, single line version
+    noremap <leader>gg :grep! -Pir '' *<left><left><left>
+    "smart grep, multi line version
+    noremap <leader>gl :grep! -Poir '' *<left><left><left>
+
+    noremap <leader>co :copen<cr>   " open quickfix window
+    noremap <leader>cc :cclose<cr>  " close quickfix window
+    noremap <leader>n :cn<cr>       " jump to next result
+    noremap <leader>p :cp<cr>       " jump to prev result
+" }
+
+" PHP {
+    noremap zp :EnablePHPFolds()<cr>            " regenerate PHP folds
+" }
+
+" Twig {
+    "force *.twig to highlight as php+html+twig
+    au BufRead,BufNewFile *.twig set filetype=phtml.twig
+" }
+
+" Plugins {
+    " Buffer explorer {
+        nnoremap <leader>b <nop>                " remove the BufExplorer mapping
+        nnoremap <leader>be :BufExplorer<cr>    " ... and map it to <leader>be
+    " }
+
+    " NERDTree {
+        " toggle NERDTree
+        noremap <leader>nn :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+        " locate current file in NERDTree
+        noremap <leader>nf :NERDTreeFind<cr>
+
+        augroup nerdtree_tweak
+            autocmd!
+            "open NERDTree on start, if no file specified
+            autocmd vimenter * if !argc() | NERDTree | endif
+            "close vim if only NERDTree left
+            autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+        augroup END
+    " }
+
+    " Syntastic {
+        let g:syntastic_check_on_open = 1   " syntax check on load and save
+        let g:syntastic_auto_loc_list = 1   " auto open and close error window
+        let g:syntastic_loc_list_height = 2 " height of error window
+    " }
+" }
+
+" Helper functions {
+    " Don't close window when deleting a buffer {
+        command! Bclose call <SID>BufcloseCloseIt()
+        function! <SID>BufcloseCloseIt()
+           let l:currentBufNum = bufnr("%")
+           let l:alternateBufNum = bufnr("#")
+
+           if buflisted(l:alternateBufNum)
+             buffer #
+           else
+             bnext
+           endif
+
+           if bufnr("%") == l:currentBufNum
+             new
+           endif
+
+           if buflisted(l:currentBufNum)
+             execute("bdelete! ".l:currentBufNum)
+           endif
+        endfunction
+    " }
+
+    " Operate on a visual selection {
+        function! VisualSelection(direction, extra_filter) range
+            let l:saved_reg = @"
+            execute "normal! vgvy"
+
+            let l:pattern = escape(@", '\\/.*$^~[]')
+            let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+            if a:direction == 'b'
+                execute "normal ?" . l:pattern . "^M"
+            elseif a:direction == 'gv'
+                call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.' . a:extra_filter)
+            elseif a:direction == 'replace'
+                call CmdLine("%s" . '/'. l:pattern . '/')
+            elseif a:direction == 'f'
+                execute "normal /" . l:pattern . "^M"
+            endif
+
+            let @/ = l:pattern
+            let @" = l:saved_reg
+        endfunction
+    " }
+" }
