@@ -44,6 +44,9 @@ if [ ! -d $endpath/.vim/bundle ]; then
     mkdir -p $endpath/.vim/bundle
 fi
 
+echo "removing tmp folder"
+rm -rf $endpath
+
 if [ ! -e $HOME/.vim/bundle/vundle ]; then
     echo "Installing Vundle"
     git clone http://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
