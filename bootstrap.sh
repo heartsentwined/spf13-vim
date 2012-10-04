@@ -34,10 +34,12 @@ else
 fi
 
 
-echo "setting up symlinks"
-lnif $endpath/.vimrc $HOME/.vimrc
-lnif $endpath/.vimrc.bundles $HOME/.vimrc.bundles
-lnif $endpath/.vim $HOME/.vim
+echo "copying .vim* files"
+mv $endpath/.vimrc $HOME/.vimrc
+mv $endpath/.vimrc.fork $HOME/.vimrc.fork
+mv $endpath/.vimrc.bundles $HOME/.vimrc.bundles
+mv $endpath/.vimrc.bundles.fork $HOME/.vimrc
+mv $endpath/.vim $HOME/.vim
 if [ ! -d $endpath/.vim/bundle ]; then
     mkdir -p $endpath/.vim/bundle
 fi
