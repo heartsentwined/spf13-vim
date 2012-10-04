@@ -38,7 +38,7 @@ echo "copying .vim* files"
 mv $endpath/.vimrc $HOME/.vimrc
 mv $endpath/.vimrc.fork $HOME/.vimrc.fork
 mv $endpath/.vimrc.bundles $HOME/.vimrc.bundles
-mv $endpath/.vimrc.bundles.fork $HOME/.vimrc
+mv $endpath/.vimrc.bundles.fork $HOME/.vimrc.bundles.fork
 if [ ! -d $HOME/.vim/bundle ]; then
     mkdir -p $HOME/.vim/bundle
 fi
