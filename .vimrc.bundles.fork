@@ -1,0 +1,8 @@
+" Bundles {
+    " PHP
+        Bundle 'heartsentwined/php-cs-fixer'
+        Bundle 'stephpy/vim-php-cs-fixer'
+
+    " Coffeescript
+        Bundle 'kchmck/vim-coffee-script'
+" }
