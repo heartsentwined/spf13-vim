@@ -440,7 +440,7 @@
 
         " SuperTab like snippets behavior.
         imap  <silent><expr><tab>  neocomplcache#sources#snippets_complete#expandable() ? "\<plug>(neocomplcache_snippets_expand)" : (pumvisible() ? "\<c-e>" : "\<tab>")
-        smap  <tab>  <right><plug>(neocomplcache_snippets_jump) 
+        smap  <tab>  <right><plug>(neocomplcache_snippets_jump)
 
         " Plugin key-mappings.
         " Ctrl-k expands snippet & moves to next position

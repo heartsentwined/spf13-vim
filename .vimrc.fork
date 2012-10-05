@@ -14,10 +14,15 @@
 
     set autoread                " auto read a file if changed externally
     set autochdir               " auto chdir to match current buffer
-    set colorcolumn=80          " show 80-char indicator
-    "colorscheme slate           " pick your favourite :-)
-    noremap <leader>w :wa!<cr>  " fast saving all buffers
 
+    set wrap linebreak          " wrap lines
+    set nolist                  " no need to show end of line tabs/spaces
+
+    set colorcolumn=80          " show 80-char indicator
+
+    colorscheme slate           " pick your favourite :-)
+
+    noremap <leader>w :wa!<cr>  " fast saving all buffers
     " quick editing of local vimrc config
     noremap <leader>e :e! ~/.vimrc.local<cr>
 " }
@@ -48,7 +53,10 @@
     set viminfo^=%
 
     " Remove trailing whitespaces and ^M chars for all files
-    autocmd FileType * autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+    augroup remove_whitespace
+        autocmd!
+        autocmd BufWritePre * :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+    augroup END
 " }
 
 " Visual mode {
@@ -57,6 +65,11 @@
     vnoremap <silent> # :call VisualSelection('b', '')<CR>
     " When you press <leader>r you can search and replace the selected text
     vnoremap <silent> <leader>r :call VisualSelection('replace', '')<CR>
+
+    " Better :Tabularize bindings - act on only first occurrence of char
+    vnoremap <Leader>a= :Tabularize /^.\{-}\zs=/<cr>
+    vnoremap <Leader>a. :Tabularize /^.\{-}\zs=>/<cr>
+    vnoremap <Leader>a> :Tabularize /^.\{-}\zs=>/<cr>
 " }
 
 " Movements, windows, buffers {
