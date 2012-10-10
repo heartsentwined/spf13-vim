@@ -157,7 +157,7 @@
     " PIV {
         noremap zp :EnablePHPFolds()<cr>            " regenerate PHP folds
 
-        "php doc generator, use <leader>pd to trigger
+        "php doc generator, use zy to trigger
         "additional processes at the end to:
         "- remove @package
         "- remove @version
@@ -165,7 +165,7 @@
         "- remove @uses
         "- remvoe @access
         "- remove short description; instead put cursor there for insert text
-        noremap <leader>pd <Esc>:call CustomPhpDoc()<cr>?\/\*\*<cr>:.,/\*\//g/@package/d<cr>l?\/\*\*<cr>:.,/\*\//g/@version/d<cr>l?\/\*\*<cr>:.,/\*\//g/@copyright/d<cr>l?\/\*\*<cr>:.,/\*\//g/@uses/d<cr>l?\/\*\*<cr>:.,/\*\//g/@access/d<cr>l?\/\*\*<cr>jlllc$
+        noremap zy <Esc>:call CustomPhpDoc()<cr>?\/\*\*<cr>:.,/\*\//g/@package/d<cr>l?\/\*\*<cr>:.,/\*\//g/@version/d<cr>l?\/\*\*<cr>:.,/\*\//g/@copyright/d<cr>l?\/\*\*<cr>:.,/\*\//g/@uses/d<cr>l?\/\*\*<cr>:.,/\*\//g/@access/d<cr>l?\/\*\*<cr>jlllc$
         function! CustomPhpDoc()
             let g:pdv_cfg_Package = "heartsentwined"
             let g:pdv_cfg_Version = "$id$"
