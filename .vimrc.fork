@@ -114,8 +114,14 @@
 " }
 
 " Twig {
-    "force *.twig to highlight as php+html+twig
-    au BufRead,BufNewFile *.twig set filetype=phtml.twig
+    augroup twig_tweak
+        autocmd!
+        "force *.twig to highlight as php+html+twig
+        autocmd BufRead,BufNewFile *.twig set filetype=phtml.twig
+        " turn off autocomplete for { and }, very annoying when typing {{ and }}'s
+        autocmd BufRead,BufNewFile *.twig :inoremap <buffer> { {
+        autocmd BufRead,BufNewFile *.twig :inoremap <buffer> } }
+    augroup END
 " }
 
 " Plugins {
