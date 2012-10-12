@@ -102,8 +102,8 @@
     "smart grep, multi line version
     noremap <leader>gl :grep! -Poir '' *<left><left><left>
 
-    noremap <leader>co :copen<cr>   " open quickfix window
-    noremap <leader>cc :cclose<cr>  " close quickfix window
+    noremap <leader>qo :copen<cr>   " open quickfix window
+    noremap <leader>qc :cclose<cr>  " close quickfix window
     noremap <leader>n :cn<cr>       " jump to next result
     noremap <leader>p :cp<cr>       " jump to prev result
 " }
@@ -150,8 +150,9 @@
         "- remove @copyright
         "- remove @uses
         "- remvoe @access
+        "- remove {{{ }}} style folds
         "- remove short description; instead put cursor there for insert text
-        noremap zy <Esc>:call CustomPhpDoc()<cr>?\/\*\*<cr>:.,/\*\//g/@package/d<cr>l?\/\*\*<cr>:.,/\*\//g/@version/d<cr>l?\/\*\*<cr>:.,/\*\//g/@copyright/d<cr>l?\/\*\*<cr>:.,/\*\//g/@uses/d<cr>l?\/\*\*<cr>:.,/\*\//g/@access/d<cr>l?\/\*\*<cr>jlllc$
+        noremap zy <Esc>:silent call CustomPhpDoc()<cr>jlllc$
         function! CustomPhpDoc()
             let g:pdv_cfg_Package = "heartsentwined"
             let g:pdv_cfg_Version = "$id$"
@@ -161,6 +162,22 @@
             let g:pdv_cfg_ReturnVal = "self"
             let g:pdv_cfg_php4always = 0 "no need PHP4 tags, e.g. @access
             call PhpDoc()
+            ?\/\*\*?,.g/@package/d
+            ?\/\*\*?,.g/@version/d
+            ?\/\*\*?,.g/@copyright/d
+            ?\/\*\*?,.g/@uses/d
+            ?\/\*\*
+            let checkline = getline(line('.')-1)
+            if (match(checkline, "{{{") > 0)
+                -1d
+                /*\/
+                /{
+                normal! %
+                +1d
+                ?}
+                normal! %
+                ?\/\*\*
+            endif
         endfunction
     " }
 
@@ -225,4 +242,11 @@
             let @" = l:saved_reg
         endfunction
     " }
+" }
+
+" hack {
+    augroup hack
+        autocmd!
+        autocmd vimenter * noremap % %
+    augroup END
 " }
