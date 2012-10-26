@@ -108,6 +108,24 @@
     noremap <leader>p :cp<cr>       " jump to prev result
 " }
 
+" CoffeeScript {
+    au FileType coffee call CoffeeSettings()
+    function! CoffeeSettings()
+        setl shiftwidth=2
+        setl tabstop=2
+        setl softtabstop=2
+    endfunction
+" }
+
+" Ruby {
+    au FileType ruby call RubySettings()
+    function! RubySettings()
+        setl shiftwidth=2
+        setl tabstop=2
+        setl softtabstop=2
+    endfunction
+" }
+
 " Twig {
     augroup twig_tweak
         autocmd!
