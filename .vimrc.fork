@@ -198,10 +198,13 @@
     " Tabularize {
         " Better :Tabularize bindings - act on only first occurrence of char
         vnoremap <Leader>a= :Tabularize /^.\{-}\zs=/<cr>
-        vnoremap <Leader>a. :Tabularize /^.\{-}\zs=>/<cr>
+        vnoremap <Leader>a. :Tabularize /^.\{-}\zs=\./<cr>
         vnoremap <Leader>a> :Tabularize /^.\{-}\zs=>/<cr>
-        vnoremap <Leader>a; :Tabularize /^.\{-}:\s*\zs.*$/<cr>
+        vnoremap <Leader>a' :Tabularize /^.\{-}\zs'.*$/<cr>
+        vnoremap <Leader>a" :Tabularize /^.\{-}\zs".*$/<cr>
+        vnoremap <Leader>a; :Tabularize /^.\{-};\s*\zs.*$/<cr>
         vnoremap <Leader>a: :Tabularize /^.\{-}:\s*\zs.*$/<cr>
+        vnoremap <Leader>a, :Tabularize /^.\{-},\s*\zs.*$/<cr>
     " }
 " }
 
