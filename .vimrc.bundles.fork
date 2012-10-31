@@ -9,4 +9,7 @@
         Bundle 'Shougo/neocomplcache'
         Bundle 'Shougo/neosnippet'
         Bundle 'honza-snipmate-snippets'
+
+    " Ruby
+        Bundle 'vim-ruby/vim-ruby'
 " }
