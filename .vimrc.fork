@@ -18,7 +18,6 @@
     set wrap linebreak          " wrap lines
     set nolist                  " no need to show end of line tabs/spaces
 
-    set cursorcolumn            " highlight the current column
     set colorcolumn=80          " show 80-char indicator
 
     colorscheme peaksea         " pick your favourite :-)
