@@ -5,11 +5,6 @@
     " Coffeescript
         Bundle 'kchmck/vim-coffee-script'
 
-    " neocomplcache-snippets-complete outdated, manually define whole section
-        Bundle 'Shougo/neocomplcache'
-        Bundle 'Shougo/neosnippet'
-        Bundle 'honza-snipmate-snippets'
-
     " Ruby
         Bundle 'vim-ruby/vim-ruby'
 " }
