@@ -18,6 +18,9 @@
     set wrap linebreak          " wrap lines
     set nolist                  " no need to show end of line tabs/spaces
 
+    set mouse-=a                " no mouse needed, fine thank you
+                                " to prevent accidental clicks on touchpad
+
     set colorcolumn=80          " show 80-char indicator
 
     colorscheme peaksea         " pick your favourite :-)
