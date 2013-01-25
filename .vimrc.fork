@@ -117,6 +117,11 @@
 
 " Ruby {
     au FileType ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    augroup haml_tweak
+        autocmd!
+        " recognize hamlbars as haml
+        autocmd BufRead,BufNewFile *.hamlbars set filetype=haml
+    augroup END
 " }
 
 " Twig {
