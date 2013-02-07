@@ -23,8 +23,6 @@
 
     set colorcolumn=80          " show 80-char indicator
 
-    colorscheme peaksea         " pick your favourite :-)
-
     noremap <leader>w :wa!<cr>  " fast saving all buffers
     " quick editing of local vimrc config
     noremap <leader>e :e! ~/.vimrc.local<cr>
