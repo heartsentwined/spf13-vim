@@ -1,20 +1,23 @@
+#!/usr/bin/env bash
 
-# Backup existing .vim stuff
-echo "backing up current vim config\n"
-today=`date +%Y%m%d`
-for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
+echo "Backing up current vim config"
+now=`date +%Y%m%d-%H%M%S`
+for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc
+do
+    [ -e $i ] && [ ! -L $i ] && mv $i $i.$now
+done
 
+endpath=$HOME/.spf13-vim
 
 if [ ! -e $endpath/.git ]; then
-    echo "cloning spf13-vim\n"
+    echo "Cloning spf13-vim"
     git clone --recursive -b 3.0 http://github.com/heartsentwined/spf13-vim.git $endpath
 else
-    echo "updating spf13-vim"
+    echo "Updating spf13-vim"
     cd $endpath && git pull
 fi
 
-
-echo "copying .vim* files"
+echo "Copying .vim* files"
 mv $endpath/.vimrc $HOME/.vimrc
 mv $endpath/.vimrc.fork $HOME/.vimrc.fork
 mv $endpath/.vimrc.bundles $HOME/.vimrc.bundles
@@ -23,7 +26,7 @@ if [ ! -d $HOME/.vim/bundle ]; then
     mkdir -p $HOME/.vim/bundle
 fi
 
-echo "removing tmp folder"
+echo "Removing tmp folder"
 rm -rf $endpath
 
 if [ ! -e $HOME/.vim/bundle/vundle ]; then
