@@ -48,6 +48,9 @@
             Bundle 'mileszs/ack.vim'
         elseif executable('ack')
             Bundle 'mileszs/ack.vim'
+        elseif executable('ag')
+            Bundle 'mileszs/ack.vim'
+            let g:ackprg = 'ag --nogroup --nocolor --column'
         endif
 
     " Use local bundles if available {
@@ -93,6 +96,7 @@
             if !exists('g:spf13_no_views')
                 Bundle 'vim-scripts/restore_view.vim'
             endif
+            Bundle 'airblade/vim-gitgutter'
             Bundle 'tpope/vim-abolish.git'
         endif
 
@@ -127,6 +131,7 @@
     " PHP
         if count(g:spf13_bundle_groups, 'php')
             Bundle 'spf13/PIV'
+            Bundle 'arnaud-lb/vim-php-namespace'
         endif
 
     " Python
