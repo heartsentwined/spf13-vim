@@ -216,14 +216,14 @@
         vnoremap <Leader>a: :Tabularize /^.\{-}:\s*\zs.*$/<cr>
         vnoremap <Leader>a, :Tabularize /^.\{-},\s*\zs.*$/<cr>
         " all occurrences version
-        vnoremap <Leader>aa= :Tabularize /=<cr>
-        vnoremap <Leader>aa. :Tabularize /.<cr>
-        vnoremap <Leader>aa> :Tabularize /=><cr>
-        vnoremap <Leader>aa' :Tabularize /'<cr>
-        vnoremap <Leader>aa" :Tabularize /"<cr>
-        vnoremap <Leader>aa; :Tabularize /;\zs<cr>
-        vnoremap <Leader>aa: :Tabularize /:\zs<cr>
-        vnoremap <Leader>aa, :Tabularize /,\zs<cr>
+        vnoremap <Leader>aa= :Tabularize /[^ ]*=<cr>
+        vnoremap <Leader>aa. :Tabularize /[^ ]*.<cr>
+        vnoremap <Leader>aa> :Tabularize /[^ ]*=><cr>
+        vnoremap <Leader>aa' :Tabularize /[^ ]*'<cr>
+        vnoremap <Leader>aa" :Tabularize /[^ ]*"<cr>
+        vnoremap <Leader>aa; :Tabularize /[^ ]*;<cr>
+        vnoremap <Leader>aa: :Tabularize /[^ ]*:<cr>
+        vnoremap <Leader>aa, :Tabularize /[^ ]*,<cr>
     " }
 " }
 
