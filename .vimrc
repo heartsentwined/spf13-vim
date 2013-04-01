@@ -169,7 +169,7 @@
     set scrolloff=3                 " Minimum lines to keep above and below cursor
     set foldenable                  " Auto fold code
     set list
-    set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
+    set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 
 " }
 
@@ -185,7 +185,8 @@
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
     "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
     " Remove trailing whitespaces and ^M chars
-    autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> call StripTrailingWhitespace()
+    autocmd FileType go autocmd BufWritePre <buffer> Fmt
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
 
 " }
@@ -525,6 +526,11 @@
         if has('conceal')
             set conceallevel=2 concealcursor=i
         endif
+
+        " Disable the neosnippet preview candidate window
+        " When enabled, there can be too much visual noise
+        " especially when splits are used.
+        set completeopt-=preview
     " }
 
     " UndoTree {
