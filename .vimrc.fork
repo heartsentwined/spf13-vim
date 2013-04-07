@@ -12,6 +12,8 @@
     inoremap jK <Esc>
     inoremap JK <Esc>
 
+    set nospell                 " don't spell check
+
     set autoread                " auto read a file if changed externally
     set autochdir               " auto chdir to match current buffer
 
