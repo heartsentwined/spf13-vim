@@ -10,4 +10,7 @@
 
     " Slim
         Bundle 'slim-template/vim-slim'
+
+    " Ember-script
+        Bundle 'heartsentwined/vim-ember-script'
 " }
