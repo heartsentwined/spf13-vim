@@ -1,5 +1,5 @@
 " Modeline and Notes {
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker spell:
+" vim: set foldmarker={,} foldlevel=0 foldmethod=marker:
 "
 "   Custom settings and mappings by heartsentwined
 "
@@ -11,8 +11,6 @@
     inoremap Jk <Esc>
     inoremap jK <Esc>
     inoremap JK <Esc>
-
-    set nospell                 " don't spell check
 
     set autoread                " auto read a file if changed externally
     set autochdir               " auto chdir to match current buffer
@@ -281,4 +279,6 @@
         autocmd!
         autocmd vimenter * noremap % %
     augroup END
+
+    set nospell         " don't spell check. doesn't work if put above.
 " }
