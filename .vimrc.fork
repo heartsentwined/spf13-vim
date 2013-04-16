@@ -122,10 +122,6 @@
     augroup END
 " }
 
-" Ember-related {
-    au BufNewFile,BufRead *.emblem set filetype=slim
-" }
-
 " Twig {
     augroup twig_tweak
         autocmd!
