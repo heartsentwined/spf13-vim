@@ -1,6 +1,5 @@
 " Bundles {
-    " disable python and scala
-        let g:spf13_bundle_groups=['general', 'programming', 'php', 'ruby', 'javascript', 'html', 'misc', 'twig']
+        let g:spf13_bundle_groups=['general', 'programming', 'neocomplcache', 'ruby', 'javascript', 'html', 'misc']
 
     " Coffeescript
         Bundle 'kchmck/vim-coffee-script'
