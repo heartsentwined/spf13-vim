@@ -99,9 +99,9 @@
     " turn magic on for regex
     set magic
     "smart grep, single line version
-    noremap <leader>gg :grep! -Pir '' *<left><left><left>
+    noremap <leader>gg :grep! -Pir '' %:p:h<left><left><left><left><left><left><left>
     "smart grep, multi line version
-    noremap <leader>gl :grep! -Poir '' *<left><left><left>
+    noremap <leader>gl :grep! -Poir '' %:p:h<left><left><left><left><left><left><left>
 
     noremap <leader>qo :copen<cr>   " open quickfix window
     noremap <leader>qc :cclose<cr>  " close quickfix window
