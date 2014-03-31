@@ -15,6 +15,12 @@
 "   You can find me at http://spf13.com
 " }
 
+" Use vimrc before if available {
+    if filereadable(expand("~/.vimrc.before"))
+        source ~/.vimrc.before
+    endif
+" }
+
 " Environment {
 
     " Basics {
@@ -140,7 +146,7 @@
 
     highlight clear SignColumn      " SignColumn should match background for
                                     " things like vim-gitgutter
-                                    
+
     highlight clear LineNr          " Current line number row will have same background color in relative mode.
                                     " Things like vim-gitgutter will match LineNr highlight
     "highlight clear CursorLineNr   " Remove highlight color from current line number
@@ -162,9 +168,6 @@
         set statusline+=\ [%{&ff}/%Y]            " Filetype
         set statusline+=\ [%{getcwd()}]          " Current dir
         set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-
-        let g:airline_theme='powerlineish'       " airline users use the powerline theme
-        let g:airline_powerline_fonts=1          " and the powerline fonts
     endif
 
     set backspace=indent,eol,start  " Backspace for dummies
@@ -195,6 +198,9 @@
     set expandtab                   " Tabs are spaces, not tabs
     set tabstop=4                   " An indentation every four columns
     set softtabstop=4               " Let backspace delete indent
+    set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+    set splitright                  " Puts new vsplit windows to the right of the current
+    set splitbelow                  " Puts new split windows to the bottom of the current
     "set matchpairs+=<:>             " Match, to be used with %
     set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
     "set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
@@ -203,7 +209,7 @@
     autocmd FileType go autocmd BufWritePre <buffer> Fmt
     autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
     autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2
-    " preceding line best in a plugin but here for now. 
+    " preceding line best in a plugin but here for now.
 
     autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 
@@ -287,6 +293,9 @@
     " Toggle search highlighting
     nmap <silent> <leader>/ :set invhlsearch<CR>
 
+    " Find merge conflict markers
+    map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
     " Shortcuts
     " Change Working Directory to that of the current file
     cmap cwd lcd %:p:h
@@ -295,6 +304,10 @@
     " Visual shifting (does not exit Visual mode)
     vnoremap < <gv
     vnoremap > >gv
+
+    " Allow using the repeat operator with a visual selection (!)
+    " http://stackoverflow.com/a/8064607/127816
+    vnoremap . :normal .<CR>
 
     " Fix home and end keybindings for screen, particularly on mac
     " - for some reason this fixes the arrow keys too. huh.
@@ -366,6 +379,12 @@
 
     " Ctags {
         set tags=./tags;/,~/.vimtags
+
+        " Make tags placed in .git/tags file available in all levels of a repository
+        let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+        if gitroot != ''
+            let &tags = &tags . ',' . gitroot . '/.git/tags'
+        endif
     " }
 
     " AutoCloseTag {
@@ -487,7 +506,9 @@
         nnoremap <silent> <leader>gb :Gblame<CR>
         nnoremap <silent> <leader>gl :Glog<CR>
         nnoremap <silent> <leader>gp :Git push<CR>
+        nnoremap <silent> <leader>gr :Gread<CR>:GitGutter<CR>
         nnoremap <silent> <leader>gw :Gwrite<CR>:GitGutter<CR>
+        nnoremap <silent> <leader>ge :Gedit<CR>
         nnoremap <silent> <leader>gg :GitGutterToggle<CR>
     "}
 
@@ -591,6 +612,7 @@
             set completeopt-=preview
         endif
     " }
+
     " neocomplcache {
         if count(g:spf13_bundle_groups, 'neocomplcache')
             let g:acp_enableAtStartup = 0
@@ -713,6 +735,17 @@
         let g:indent_guides_enable_on_vim_startup = 1
     " }
 
+    " airline {
+        let g:airline_theme='powerlineish'      " airline users use the powerline theme
+        let g:airline_left_sep='›'              " Slightly fancier separator, instead of '>'
+        let g:airline_right_sep='‹'             " Slightly fancier separator, instead of '<'
+    " }
+
+    " vim-gitgutter {
+        " https://github.com/airblade/vim-gitgutter/issues/106
+        let g:gitgutter_realtime = 0
+    " }
+
 " }
 
 " GUI Settings {
@@ -825,6 +858,29 @@
             call cursor(l, c)
         endif
     endfunction
+    " }
+
+    " Shell command {
+    function! s:RunShellCommand(cmdline)
+        botright new
+
+        setlocal buftype=nofile
+        setlocal bufhidden=delete
+        setlocal nobuflisted
+        setlocal noswapfile
+        setlocal nowrap
+        setlocal filetype=shell
+        setlocal syntax=shell
+
+        call setline(1, a:cmdline)
+        call setline(2, substitute(a:cmdline, '.', '=', 'g'))
+        execute 'silent $read !' . escape(a:cmdline, '%#')
+        setlocal nomodifiable
+        1
+    endfunction
+
+    command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
+    " e.g. Grep current file for <search_term>: Shell grep -Hn <search_term> %
     " }
 
 " }
