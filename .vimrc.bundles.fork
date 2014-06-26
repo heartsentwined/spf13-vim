@@ -1,9 +1,6 @@
 " Bundles {
         let g:spf13_bundle_groups=['general', 'programming', 'neocomplcache', 'ruby', 'javascript', 'html', 'misc']
 
-    " Coffeescript
-        Bundle 'kchmck/vim-coffee-script'
-
     " Ruby
         Bundle 'vim-ruby/vim-ruby'
 
