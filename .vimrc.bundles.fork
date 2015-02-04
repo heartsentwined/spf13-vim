@@ -1,5 +1,5 @@
 " Bundles {
-        let g:spf13_bundle_groups=['general', 'programming', 'neocomplcache', 'ruby', 'javascript', 'html', 'misc']
+        let g:spf13_bundle_groups=['general', 'programming', 'neocomplcache', 'php', 'python', 'ruby', 'javascript', 'html', 'misc']
 
     " BufExplorer
         Bundle 'jlanzarotta/bufexplorer'
