@@ -107,7 +107,7 @@
             Bundle 'tpope/vim-surround'
             Bundle 'tpope/vim-repeat'
             Bundle 'spf13/vim-autoclose'
-            Bundle 'kien/ctrlp.vim'
+            Bundle 'ctrlpvim/ctrlp.vim'
             Bundle 'tacahiroy/ctrlp-funky'
             Bundle 'kristijanhusak/vim-multiple-cursors'
             Bundle 'vim-scripts/sessionman.vim'
@@ -266,6 +266,14 @@
         if count(g:spf13_bundle_groups, 'go')
             "Bundle 'Blackrush/vim-gocode'
             Bundle 'fatih/vim-go'
+        endif
+    " }
+
+    " Elixir {
+        if count(g:spf13_bundle_groups, 'elixir')
+            Bundle 'elixir-lang/vim-elixir'
+            Bundle 'carlosgaldino/elixir-snippets'
+            Bundle 'mattreduce/vim-mix'
         endif
     " }
 
