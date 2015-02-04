@@ -82,7 +82,7 @@
     noremap <leader>t<leader> :tabnext  " next tab
 
     noremap <leader>bd :Bclose<cr>      " close current buffer
-    noremap <leader>ba :1,1000 bd!<cr>  " close all buffers
+    noremap <leader>ba :%bd!<cr>  " close all buffers
     " switch buffer behavior
     try
         set switchbuf=useopen,usetab,newtab
