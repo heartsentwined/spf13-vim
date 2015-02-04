@@ -1,6 +1,9 @@
 " Bundles {
         let g:spf13_bundle_groups=['general', 'programming', 'neocomplcache', 'ruby', 'javascript', 'html', 'misc']
 
+    " BufExplorer
+        Bundle 'jlanzarotta/bufexplorer'
+
     " Ruby
         Bundle 'vim-ruby/vim-ruby'
 
