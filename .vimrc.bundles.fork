@@ -14,4 +14,8 @@
         Bundle 'heartsentwined/vim-ember-script'
         Bundle 'heartsentwined/vim-emblem'
         Bundle 'mustache/vim-mustache-handlebars'
+
+    " Jade
+        Bundle 'digitaltoad/vim-jade'
+
 " }
