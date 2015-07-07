@@ -109,8 +109,21 @@
     noremap <leader>p :cp<cr>       " jump to prev result
 " }
 
+" Javascript {
+    au FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
+" }
+
 " CoffeeScript {
     au FileType coffee setlocal shiftwidth=2 tabstop=2 softtabstop=2
+" }
+
+" Jade {
+    au FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
+" }
+
+" Json {
+    au FileType json setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    au FileType json5 setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " }
 
 " Ruby {
