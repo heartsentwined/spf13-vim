@@ -147,6 +147,13 @@
 " }
 
 " Plugins {
+    " CtrlP {
+      let g:ctrlp_prompt_mappings = {
+        \ 'PrtClearCache()': ['<c-h>'],
+        \ 'PrtCurLeft()': ['<left>', '<c-^'],
+        \ }
+    " }
+
     " Buffer explorer {
         nnoremap <leader>b <nop>                " remove the BufExplorer mapping
         nnoremap <leader>be :BufExplorer<cr>    " ... and map it to <leader>be
