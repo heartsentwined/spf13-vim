@@ -135,6 +135,10 @@
     augroup END
 " }
 
+" Html {
+    au FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+" }
+
 " Twig {
     augroup twig_tweak
         autocmd!
