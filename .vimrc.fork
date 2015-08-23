@@ -26,6 +26,12 @@
     noremap <leader>w :wa!<cr>  " fast saving all buffers
     " quick editing of local vimrc config
     noremap <leader>e :e! ~/.vimrc.local<cr>
+
+    " to update file when changed on disk
+    noremap <leader>ct :checktime<cr>
+
+    " print full file path
+    noremap <leader>pf :put =expand('%:p')<cr>
 " }
 
 " Backups {
@@ -58,6 +64,10 @@
         autocmd!
         autocmd BufWritePre * :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
     augroup END
+
+    " fix tab > space
+    nnoremap <leader>t2 :set tabstop=2 shiftwidth=2 expandtab<cr>:retab<cr>
+    nnoremap <leader>t4 :set tabstop=4 shiftwidth=4 expandtab<cr>:retab<cr>
 " }
 
 " Visual mode {
