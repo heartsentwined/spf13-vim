@@ -21,4 +21,6 @@
     " Json5
         Bundle 'GutenYe/json5.vim'
 
+    " pegjs
+        Bundle 'alunny/pegjs-vim'
 " }
