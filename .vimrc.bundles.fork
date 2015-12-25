@@ -23,4 +23,7 @@
 
     " pegjs
         Bundle 'alunny/pegjs-vim'
+
+    " android
+        Bundle 'hsanson/vim-android'
 " }
