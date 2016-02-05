@@ -330,4 +330,5 @@
     augroup END
 
     set nospell         " don't spell check. doesn't work if put above.
+    set wrap            " set wrap again - dunno why
 " }
