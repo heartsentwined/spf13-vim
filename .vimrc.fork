@@ -68,9 +68,6 @@
     " fix tab > space
     nnoremap <leader>t2 :set tabstop=2 shiftwidth=2 expandtab<cr>:retab<cr>
     nnoremap <leader>t4 :set tabstop=4 shiftwidth=4 expandtab<cr>:retab<cr>
-
-    " everything is 2 space
-    au FileType * setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " }
 
 " Visual mode {
@@ -329,6 +326,7 @@
         autocmd vimenter * noremap % %
     augroup END
 
-    set nospell         " don't spell check. doesn't work if put above.
-    set wrap            " set wrap again - dunno why
+    au FileType * setlocal shiftwidth=2 tabstop=2 softtabstop=2
+    au FileType * set nospell
+    au FileType * set wrap
 " }
