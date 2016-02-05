@@ -122,6 +122,14 @@
     noremap <leader>p :cp<cr>       " jump to prev result
 " }
 
+" Colorscheme {
+    try
+        colorscheme southernlights
+    catch /^Vim\%((\a\+)\)\=:E185/
+        " nothing
+    endtry
+" }
+
 " Javascript {
     au FileType javascript setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " }
