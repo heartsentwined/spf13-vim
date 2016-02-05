@@ -318,6 +318,11 @@
     " }
 " }
 
+" misc {
+    map <leader>dd :put ='print \"Content-type: text/html\n\n\"; use Data::Dumper; print \"<pre>\"; print Dumper(); print \"</pre>\";'<cr>^82la
+    map <leader>de oa<esc>:put ='require(\"debug\")(\"ad-hoc\")() '<cr>kJ^xx26la
+" }
+
 " hack {
     augroup hack
         autocmd!
