@@ -139,6 +139,7 @@
 " }
 
 " Jade {
+    autocmd BufNewFile,BufRead *.view set filetype=jade
     au FileType jade setlocal shiftwidth=2 tabstop=2 softtabstop=2
 " }
 
