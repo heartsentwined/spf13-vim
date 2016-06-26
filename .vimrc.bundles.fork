@@ -23,7 +23,4 @@
 
     " pegjs
         Bundle 'alunny/pegjs-vim'
-
-    " airline themes moved
-        Bundle 'vim-airline/vim-airline-themes'
 " }
