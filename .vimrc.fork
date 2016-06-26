@@ -1,5 +1,5 @@
 " Modeline and Notes {
-" vim: set foldmarker={,} foldlevel=0 foldmethod=marker:
+" vim: set foldmarker={,} foldlevel=99 foldmethod=marker:
 "
 "   Custom settings and mappings by heartsentwined
 "
